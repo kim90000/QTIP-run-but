@@ -1,0 +1,346 @@
+
+(base) C:\Users\TARGET STORE>cd C:\Users\TARGET STORE\Desktop\1\2 && conda activate 1
+
+(1) C:\Users\TARGET STORE\Desktop\1\2>python
+Python 3.11.11 | packaged by Anaconda, Inc. | (main, Dec 11 2024, 16:34:19) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from transformers import AutoModelForCausalLM, AutoTokenizer
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.1.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<stdin>", line 1, in <module>
+  File "C:\Users\TARGET STORE\AppData\Roaming\Python\Python311\site-packages\transformers\__init__.py", line 26, in <module>
+    from . import dependency_versions_check
+  File "C:\Users\TARGET STORE\AppData\Roaming\Python\Python311\site-packages\transformers\dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "C:\Users\TARGET STORE\AppData\Roaming\Python\Python311\site-packages\transformers\utils\__init__.py", line 27, in <module>
+    from .chat_template_utils import DocstringParsingException, TypeHintParsingException, get_json_schema
+  File "C:\Users\TARGET STORE\AppData\Roaming\Python\Python311\site-packages\transformers\utils\chat_template_utils.py", line 39, in <module>
+    from torch import Tensor
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\__init__.py", line 2120, in <module>
+    from torch._higher_order_ops import cond
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\_higher_order_ops\__init__.py", line 1, in <module>
+    from .cond import cond
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\_higher_order_ops\cond.py", line 5, in <module>
+    import torch._subclasses.functional_tensor
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\_subclasses\functional_tensor.py", line 42, in <module>
+    class FunctionalTensor(torch.Tensor):
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\_subclasses\functional_tensor.py", line 258, in FunctionalTensor
+    cpu = _conversion_method_template(device=torch.device("cpu"))
+C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\_subclasses\functional_tensor.py:258: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\torch\csrc\utils\tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> import torch
+>>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>>
+>>> # تحديد الجهاز المناسب
+>>> device = "cuda" if torch.cuda.is_available() else "cpu"
+>>> print(f"استخدام الجهاز: {device}")
+استخدام الجهاز: cuda
+>>> model_name = "relaxml/Llama-3.1-8b-Instruct-QTIP-2Bit"  # استبدل باسم النموذج الفعلي
+>>> tokenizer = AutoTokenizer.from_pretrained(model_name)
+>>> if tokenizer.pad_token is None:
+...     tokenizer.pad_token = tokenizer.eos_token  # استخدام رمز نهاية التسلسل كبديل
+...
+>>> # تحميل النموذج إلى الجهاز
+>>> model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
+Some weights of the model checkpoint at relaxml/Llama-3.1-8b-Instruct-QTIP-2Bit were not used when initializing LlamaForCausalLM: ['model.layers.0.mlp.down_proj.SU', 'model.layers.0.mlp.down_proj.SV', 'model.layers.0.mlp.down_proj.tlut', 'model.layers.0.mlp.down_proj.trellis', 'model.layers.0.mlp.gate_proj.SU', 'model.layers.0.mlp.gate_proj.SV', 'model.layers.0.mlp.gate_proj.tlut', 'model.layers.0.mlp.gate_proj.trellis', 'model.layers.0.mlp.up_proj.SU', 'model.layers.0.mlp.up_proj.SV', 'model.layers.0.mlp.up_proj.tlut', 'model.layers.0.mlp.up_proj.trellis', 'model.layers.0.self_attn.k_proj.SU', 'model.layers.0.self_attn.k_proj.SV', 'model.layers.0.self_attn.k_proj.tlut', 'model.layers.0.self_attn.k_proj.trellis', 'model.layers.0.self_attn.o_proj.SU', 'model.layers.0.self_attn.o_proj.SV', 'model.layers.0.self_attn.o_proj.tlut', 'model.layers.0.self_attn.o_proj.trellis', 'model.layers.0.self_attn.q_proj.SU', 'model.layers.0.self_attn.q_proj.SV', 'model.layers.0.self_attn.q_proj.tlut', 'model.layers.0.self_attn.q_proj.trellis', 'model.layers.0.self_attn.v_proj.SU', 'model.layers.0.self_attn.v_proj.SV', 'model.layers.0.self_attn.v_proj.tlut', 'model.layers.0.self_attn.v_proj.trellis', 'model.layers.1.mlp.down_proj.SU', 'model.layers.1.mlp.down_proj.SV', 'model.layers.1.mlp.down_proj.tlut', 'model.layers.1.mlp.down_proj.trellis', 'model.layers.1.mlp.gate_proj.SU', 'model.layers.1.mlp.gate_proj.SV', 'model.layers.1.mlp.gate_proj.tlut', 'model.layers.1.mlp.gate_proj.trellis', 'model.layers.1.mlp.up_proj.SU', 'model.layers.1.mlp.up_proj.SV', 'model.layers.1.mlp.up_proj.tlut', 'model.layers.1.mlp.up_proj.trellis', 'model.layers.1.self_attn.k_proj.SU', 'model.layers.1.self_attn.k_proj.SV', 'model.layers.1.self_attn.k_proj.tlut', 'model.layers.1.self_attn.k_proj.trellis', 'model.layers.1.self_attn.o_proj.SU', 'model.layers.1.self_attn.o_proj.SV', 'model.layers.1.self_attn.o_proj.tlut', 'model.layers.1.self_attn.o_proj.trellis', 'model.layers.1.self_attn.q_proj.SU', 'model.layers.1.self_attn.q_proj.SV', 'model.layers.1.self_attn.q_proj.tlut', 'model.layers.1.self_attn.q_proj.trellis', 'model.layers.1.self_attn.v_proj.SU', 'model.layers.1.self_attn.v_proj.SV', 'model.layers.1.self_attn.v_proj.tlut', 'model.layers.1.self_attn.v_proj.trellis', 'model.layers.10.mlp.down_proj.SU', 'model.layers.10.mlp.down_proj.SV', 'model.layers.10.mlp.down_proj.tlut', 'model.layers.10.mlp.down_proj.trellis', 'model.layers.10.mlp.gate_proj.SU', 'model.layers.10.mlp.gate_proj.SV', 'model.layers.10.mlp.gate_proj.tlut', 'model.layers.10.mlp.gate_proj.trellis', 'model.layers.10.mlp.up_proj.SU', 'model.layers.10.mlp.up_proj.SV', 'model.layers.10.mlp.up_proj.tlut', 'model.layers.10.mlp.up_proj.trellis', 'model.layers.10.self_attn.k_proj.SU', 'model.layers.10.self_attn.k_proj.SV', 'model.layers.10.self_attn.k_proj.tlut', 'model.layers.10.self_attn.k_proj.trellis', 'model.layers.10.self_attn.o_proj.SU', 'model.layers.10.self_attn.o_proj.SV', 'model.layers.10.self_attn.o_proj.tlut', 'model.layers.10.self_attn.o_proj.trellis', 'model.layers.10.self_attn.q_proj.SU', 'model.layers.10.self_attn.q_proj.SV', 'model.layers.10.self_attn.q_proj.tlut', 'model.layers.10.self_attn.q_proj.trellis', 'model.layers.10.self_attn.v_proj.SU', 'model.layers.10.self_attn.v_proj.SV', 'model.layers.10.self_attn.v_proj.tlut', 'model.layers.10.self_attn.v_proj.trellis', 'model.layers.11.mlp.down_proj.SU', 'model.layers.11.mlp.down_proj.SV', 'model.layers.11.mlp.down_proj.tlut', 'model.layers.11.mlp.down_proj.trellis', 'model.layers.11.mlp.gate_proj.SU', 'model.layers.11.mlp.gate_proj.SV', 'model.layers.11.mlp.gate_proj.tlut', 'model.layers.11.mlp.gate_proj.trellis', 'model.layers.11.mlp.up_proj.SU', 'model.layers.11.mlp.up_proj.SV', 'model.layers.11.mlp.up_proj.tlut', 'model.layers.11.mlp.up_proj.trellis', 'model.layers.11.self_attn.k_proj.SU', 'model.layers.11.self_attn.k_proj.SV', 'model.layers.11.self_attn.k_proj.tlut', 'model.layers.11.self_attn.k_proj.trellis', 'model.layers.11.self_attn.o_proj.SU', 'model.layers.11.self_attn.o_proj.SV', 'model.layers.11.self_attn.o_proj.tlut', 'model.layers.11.self_attn.o_proj.trellis', 'model.layers.11.self_attn.q_proj.SU', 'model.layers.11.self_attn.q_proj.SV', 'model.layers.11.self_attn.q_proj.tlut', 'model.layers.11.self_attn.q_proj.trellis', 'model.layers.11.self_attn.v_proj.SU', 'model.layers.11.self_attn.v_proj.SV', 'model.layers.11.self_attn.v_proj.tlut', 'model.layers.11.self_attn.v_proj.trellis', 'model.layers.12.mlp.down_proj.SU', 'model.layers.12.mlp.down_proj.SV', 'model.layers.12.mlp.down_proj.tlut', 'model.layers.12.mlp.down_proj.trellis', 'model.layers.12.mlp.gate_proj.SU', 'model.layers.12.mlp.gate_proj.SV', 'model.layers.12.mlp.gate_proj.tlut', 'model.layers.12.mlp.gate_proj.trellis', 'model.layers.12.mlp.up_proj.SU', 'model.layers.12.mlp.up_proj.SV', 'model.layers.12.mlp.up_proj.tlut', 'model.layers.12.mlp.up_proj.trellis', 'model.layers.12.self_attn.k_proj.SU', 'model.layers.12.self_attn.k_proj.SV', 'model.layers.12.self_attn.k_proj.tlut', 'model.layers.12.self_attn.k_proj.trellis', 'model.layers.12.self_attn.o_proj.SU', 'model.layers.12.self_attn.o_proj.SV', 'model.layers.12.self_attn.o_proj.tlut', 'model.layers.12.self_attn.o_proj.trellis', 'model.layers.12.self_attn.q_proj.SU', 'model.layers.12.self_attn.q_proj.SV', 'model.layers.12.self_attn.q_proj.tlut', 'model.layers.12.self_attn.q_proj.trellis', 'model.layers.12.self_attn.v_proj.SU', 'model.layers.12.self_attn.v_proj.SV', 'model.layers.12.self_attn.v_proj.tlut', 'model.layers.12.self_attn.v_proj.trellis', 'model.layers.13.mlp.down_proj.SU', 'model.layers.13.mlp.down_proj.SV', 'model.layers.13.mlp.down_proj.tlut', 'model.layers.13.mlp.down_proj.trellis', 'model.layers.13.mlp.gate_proj.SU', 'model.layers.13.mlp.gate_proj.SV', 'model.layers.13.mlp.gate_proj.tlut', 'model.layers.13.mlp.gate_proj.trellis', 'model.layers.13.mlp.up_proj.SU', 'model.layers.13.mlp.up_proj.SV', 'model.layers.13.mlp.up_proj.tlut', 'model.layers.13.mlp.up_proj.trellis', 'model.layers.13.self_attn.k_proj.SU', 'model.layers.13.self_attn.k_proj.SV', 'model.layers.13.self_attn.k_proj.tlut', 'model.layers.13.self_attn.k_proj.trellis', 'model.layers.13.self_attn.o_proj.SU', 'model.layers.13.self_attn.o_proj.SV', 'model.layers.13.self_attn.o_proj.tlut', 'model.layers.13.self_attn.o_proj.trellis', 'model.layers.13.self_attn.q_proj.SU', 'model.layers.13.self_attn.q_proj.SV', 'model.layers.13.self_attn.q_proj.tlut', 'model.layers.13.self_attn.q_proj.trellis', 'model.layers.13.self_attn.v_proj.SU', 'model.layers.13.self_attn.v_proj.SV', 'model.layers.13.self_attn.v_proj.tlut', 'model.layers.13.self_attn.v_proj.trellis', 'model.layers.14.mlp.down_proj.SU', 'model.layers.14.mlp.down_proj.SV', 'model.layers.14.mlp.down_proj.tlut', 'model.layers.14.mlp.down_proj.trellis', 'model.layers.14.mlp.gate_proj.SU', 'model.layers.14.mlp.gate_proj.SV', 'model.layers.14.mlp.gate_proj.tlut', 'model.layers.14.mlp.gate_proj.trellis', 'model.layers.14.mlp.up_proj.SU', 'model.layers.14.mlp.up_proj.SV', 'model.layers.14.mlp.up_proj.tlut', 'model.layers.14.mlp.up_proj.trellis', 'model.layers.14.self_attn.k_proj.SU', 'model.layers.14.self_attn.k_proj.SV', 'model.layers.14.self_attn.k_proj.tlut', 'model.layers.14.self_attn.k_proj.trellis', 'model.layers.14.self_attn.o_proj.SU', 'model.layers.14.self_attn.o_proj.SV', 'model.layers.14.self_attn.o_proj.tlut', 'model.layers.14.self_attn.o_proj.trellis', 'model.layers.14.self_attn.q_proj.SU', 'model.layers.14.self_attn.q_proj.SV', 'model.layers.14.self_attn.q_proj.tlut', 'model.layers.14.self_attn.q_proj.trellis', 'model.layers.14.self_attn.v_proj.SU', 'model.layers.14.self_attn.v_proj.SV', 'model.layers.14.self_attn.v_proj.tlut', 'model.layers.14.self_attn.v_proj.trellis', 'model.layers.15.mlp.down_proj.SU', 'model.layers.15.mlp.down_proj.SV', 'model.layers.15.mlp.down_proj.tlut', 'model.layers.15.mlp.down_proj.trellis', 'model.layers.15.mlp.gate_proj.SU', 'model.layers.15.mlp.gate_proj.SV', 'model.layers.15.mlp.gate_proj.tlut', 'model.layers.15.mlp.gate_proj.trellis', 'model.layers.15.mlp.up_proj.SU', 'model.layers.15.mlp.up_proj.SV', 'model.layers.15.mlp.up_proj.tlut', 'model.layers.15.mlp.up_proj.trellis', 'model.layers.15.self_attn.k_proj.SU', 'model.layers.15.self_attn.k_proj.SV', 'model.layers.15.self_attn.k_proj.tlut', 'model.layers.15.self_attn.k_proj.trellis', 'model.layers.15.self_attn.o_proj.SU', 'model.layers.15.self_attn.o_proj.SV', 'model.layers.15.self_attn.o_proj.tlut', 'model.layers.15.self_attn.o_proj.trellis', 'model.layers.15.self_attn.q_proj.SU', 'model.layers.15.self_attn.q_proj.SV', 'model.layers.15.self_attn.q_proj.tlut', 'model.layers.15.self_attn.q_proj.trellis', 'model.layers.15.self_attn.v_proj.SU', 'model.layers.15.self_attn.v_proj.SV', 'model.layers.15.self_attn.v_proj.tlut', 'model.layers.15.self_attn.v_proj.trellis', 'model.layers.16.mlp.down_proj.SU', 'model.layers.16.mlp.down_proj.SV', 'model.layers.16.mlp.down_proj.tlut', 'model.layers.16.mlp.down_proj.trellis', 'model.layers.16.mlp.gate_proj.SU', 'model.layers.16.mlp.gate_proj.SV', 'model.layers.16.mlp.gate_proj.tlut', 'model.layers.16.mlp.gate_proj.trellis', 'model.layers.16.mlp.up_proj.SU', 'model.layers.16.mlp.up_proj.SV', 'model.layers.16.mlp.up_proj.tlut', 'model.layers.16.mlp.up_proj.trellis', 'model.layers.16.self_attn.k_proj.SU', 'model.layers.16.self_attn.k_proj.SV', 'model.layers.16.self_attn.k_proj.tlut', 'model.layers.16.self_attn.k_proj.trellis', 'model.layers.16.self_attn.o_proj.SU', 'model.layers.16.self_attn.o_proj.SV', 'model.layers.16.self_attn.o_proj.tlut', 'model.layers.16.self_attn.o_proj.trellis', 'model.layers.16.self_attn.q_proj.SU', 'model.layers.16.self_attn.q_proj.SV', 'model.layers.16.self_attn.q_proj.tlut', 'model.layers.16.self_attn.q_proj.trellis', 'model.layers.16.self_attn.v_proj.SU', 'model.layers.16.self_attn.v_proj.SV', 'model.layers.16.self_attn.v_proj.tlut', 'model.layers.16.self_attn.v_proj.trellis', 'model.layers.17.mlp.down_proj.SU', 'model.layers.17.mlp.down_proj.SV', 'model.layers.17.mlp.down_proj.tlut', 'model.layers.17.mlp.down_proj.trellis', 'model.layers.17.mlp.gate_proj.SU', 'model.layers.17.mlp.gate_proj.SV', 'model.layers.17.mlp.gate_proj.tlut', 'model.layers.17.mlp.gate_proj.trellis', 'model.layers.17.mlp.up_proj.SU', 'model.layers.17.mlp.up_proj.SV', 'model.layers.17.mlp.up_proj.tlut', 'model.layers.17.mlp.up_proj.trellis', 'model.layers.17.self_attn.k_proj.SU', 'model.layers.17.self_attn.k_proj.SV', 'model.layers.17.self_attn.k_proj.tlut', 'model.layers.17.self_attn.k_proj.trellis', 'model.layers.17.self_attn.o_proj.SU', 'model.layers.17.self_attn.o_proj.SV', 'model.layers.17.self_attn.o_proj.tlut', 'model.layers.17.self_attn.o_proj.trellis', 'model.layers.17.self_attn.q_proj.SU', 'model.layers.17.self_attn.q_proj.SV', 'model.layers.17.self_attn.q_proj.tlut', 'model.layers.17.self_attn.q_proj.trellis', 'model.layers.17.self_attn.v_proj.SU', 'model.layers.17.self_attn.v_proj.SV', 'model.layers.17.self_attn.v_proj.tlut', 'model.layers.17.self_attn.v_proj.trellis', 'model.layers.18.mlp.down_proj.SU', 'model.layers.18.mlp.down_proj.SV', 'model.layers.18.mlp.down_proj.tlut', 'model.layers.18.mlp.down_proj.trellis', 'model.layers.18.mlp.gate_proj.SU', 'model.layers.18.mlp.gate_proj.SV', 'model.layers.18.mlp.gate_proj.tlut', 'model.layers.18.mlp.gate_proj.trellis', 'model.layers.18.mlp.up_proj.SU', 'model.layers.18.mlp.up_proj.SV', 'model.layers.18.mlp.up_proj.tlut', 'model.layers.18.mlp.up_proj.trellis', 'model.layers.18.self_attn.k_proj.SU', 'model.layers.18.self_attn.k_proj.SV', 'model.layers.18.self_attn.k_proj.tlut', 'model.layers.18.self_attn.k_proj.trellis', 'model.layers.18.self_attn.o_proj.SU', 'model.layers.18.self_attn.o_proj.SV', 'model.layers.18.self_attn.o_proj.tlut', 'model.layers.18.self_attn.o_proj.trellis', 'model.layers.18.self_attn.q_proj.SU', 'model.layers.18.self_attn.q_proj.SV', 'model.layers.18.self_attn.q_proj.tlut', 'model.layers.18.self_attn.q_proj.trellis', 'model.layers.18.self_attn.v_proj.SU', 'model.layers.18.self_attn.v_proj.SV', 'model.layers.18.self_attn.v_proj.tlut', 'model.layers.18.self_attn.v_proj.trellis', 'model.layers.19.mlp.down_proj.SU', 'model.layers.19.mlp.down_proj.SV', 'model.layers.19.mlp.down_proj.tlut', 'model.layers.19.mlp.down_proj.trellis', 'model.layers.19.mlp.gate_proj.SU', 'model.layers.19.mlp.gate_proj.SV', 'model.layers.19.mlp.gate_proj.tlut', 'model.layers.19.mlp.gate_proj.trellis', 'model.layers.19.mlp.up_proj.SU', 'model.layers.19.mlp.up_proj.SV', 'model.layers.19.mlp.up_proj.tlut', 'model.layers.19.mlp.up_proj.trellis', 'model.layers.19.self_attn.k_proj.SU', 'model.layers.19.self_attn.k_proj.SV', 'model.layers.19.self_attn.k_proj.tlut', 'model.layers.19.self_attn.k_proj.trellis', 'model.layers.19.self_attn.o_proj.SU', 'model.layers.19.self_attn.o_proj.SV', 'model.layers.19.self_attn.o_proj.tlut', 'model.layers.19.self_attn.o_proj.trellis', 'model.layers.19.self_attn.q_proj.SU', 'model.layers.19.self_attn.q_proj.SV', 'model.layers.19.self_attn.q_proj.tlut', 'model.layers.19.self_attn.q_proj.trellis', 'model.layers.19.self_attn.v_proj.SU', 'model.layers.19.self_attn.v_proj.SV', 'model.layers.19.self_attn.v_proj.tlut', 'model.layers.19.self_attn.v_proj.trellis', 'model.layers.2.mlp.down_proj.SU', 'model.layers.2.mlp.down_proj.SV', 'model.layers.2.mlp.down_proj.tlut', 'model.layers.2.mlp.down_proj.trellis', 'model.layers.2.mlp.gate_proj.SU', 'model.layers.2.mlp.gate_proj.SV', 'model.layers.2.mlp.gate_proj.tlut', 'model.layers.2.mlp.gate_proj.trellis', 'model.layers.2.mlp.up_proj.SU', 'model.layers.2.mlp.up_proj.SV', 'model.layers.2.mlp.up_proj.tlut', 'model.layers.2.mlp.up_proj.trellis', 'model.layers.2.self_attn.k_proj.SU', 'model.layers.2.self_attn.k_proj.SV', 'model.layers.2.self_attn.k_proj.tlut', 'model.layers.2.self_attn.k_proj.trellis', 'model.layers.2.self_attn.o_proj.SU', 'model.layers.2.self_attn.o_proj.SV', 'model.layers.2.self_attn.o_proj.tlut', 'model.layers.2.self_attn.o_proj.trellis', 'model.layers.2.self_attn.q_proj.SU', 'model.layers.2.self_attn.q_proj.SV', 'model.layers.2.self_attn.q_proj.tlut', 'model.layers.2.self_attn.q_proj.trellis', 'model.layers.2.self_attn.v_proj.SU', 'model.layers.2.self_attn.v_proj.SV', 'model.layers.2.self_attn.v_proj.tlut', 'model.layers.2.self_attn.v_proj.trellis', 'model.layers.20.mlp.down_proj.SU', 'model.layers.20.mlp.down_proj.SV', 'model.layers.20.mlp.down_proj.tlut', 'model.layers.20.mlp.down_proj.trellis', 'model.layers.20.mlp.gate_proj.SU', 'model.layers.20.mlp.gate_proj.SV', 'model.layers.20.mlp.gate_proj.tlut', 'model.layers.20.mlp.gate_proj.trellis', 'model.layers.20.mlp.up_proj.SU', 'model.layers.20.mlp.up_proj.SV', 'model.layers.20.mlp.up_proj.tlut', 'model.layers.20.mlp.up_proj.trellis', 'model.layers.20.self_attn.k_proj.SU', 'model.layers.20.self_attn.k_proj.SV', 'model.layers.20.self_attn.k_proj.tlut', 'model.layers.20.self_attn.k_proj.trellis', 'model.layers.20.self_attn.o_proj.SU', 'model.layers.20.self_attn.o_proj.SV', 'model.layers.20.self_attn.o_proj.tlut', 'model.layers.20.self_attn.o_proj.trellis', 'model.layers.20.self_attn.q_proj.SU', 'model.layers.20.self_attn.q_proj.SV', 'model.layers.20.self_attn.q_proj.tlut', 'model.layers.20.self_attn.q_proj.trellis', 'model.layers.20.self_attn.v_proj.SU', 'model.layers.20.self_attn.v_proj.SV', 'model.layers.20.self_attn.v_proj.tlut', 'model.layers.20.self_attn.v_proj.trellis', 'model.layers.21.mlp.down_proj.SU', 'model.layers.21.mlp.down_proj.SV', 'model.layers.21.mlp.down_proj.tlut', 'model.layers.21.mlp.down_proj.trellis', 'model.layers.21.mlp.gate_proj.SU', 'model.layers.21.mlp.gate_proj.SV', 'model.layers.21.mlp.gate_proj.tlut', 'model.layers.21.mlp.gate_proj.trellis', 'model.layers.21.mlp.up_proj.SU', 'model.layers.21.mlp.up_proj.SV', 'model.layers.21.mlp.up_proj.tlut', 'model.layers.21.mlp.up_proj.trellis', 'model.layers.21.self_attn.k_proj.SU', 'model.layers.21.self_attn.k_proj.SV', 'model.layers.21.self_attn.k_proj.tlut', 'model.layers.21.self_attn.k_proj.trellis', 'model.layers.21.self_attn.o_proj.SU', 'model.layers.21.self_attn.o_proj.SV', 'model.layers.21.self_attn.o_proj.tlut', 'model.layers.21.self_attn.o_proj.trellis', 'model.layers.21.self_attn.q_proj.SU', 'model.layers.21.self_attn.q_proj.SV', 'model.layers.21.self_attn.q_proj.tlut', 'model.layers.21.self_attn.q_proj.trellis', 'model.layers.21.self_attn.v_proj.SU', 'model.layers.21.self_attn.v_proj.SV', 'model.layers.21.self_attn.v_proj.tlut', 'model.layers.21.self_attn.v_proj.trellis', 'model.layers.22.mlp.down_proj.SU', 'model.layers.22.mlp.down_proj.SV', 'model.layers.22.mlp.down_proj.tlut', 'model.layers.22.mlp.down_proj.trellis', 'model.layers.22.mlp.gate_proj.SU', 'model.layers.22.mlp.gate_proj.SV', 'model.layers.22.mlp.gate_proj.tlut', 'model.layers.22.mlp.gate_proj.trellis', 'model.layers.22.mlp.up_proj.SU', 'model.layers.22.mlp.up_proj.SV', 'model.layers.22.mlp.up_proj.tlut', 'model.layers.22.mlp.up_proj.trellis', 'model.layers.22.self_attn.k_proj.SU', 'model.layers.22.self_attn.k_proj.SV', 'model.layers.22.self_attn.k_proj.tlut', 'model.layers.22.self_attn.k_proj.trellis', 'model.layers.22.self_attn.o_proj.SU', 'model.layers.22.self_attn.o_proj.SV', 'model.layers.22.self_attn.o_proj.tlut', 'model.layers.22.self_attn.o_proj.trellis', 'model.layers.22.self_attn.q_proj.SU', 'model.layers.22.self_attn.q_proj.SV', 'model.layers.22.self_attn.q_proj.tlut', 'model.layers.22.self_attn.q_proj.trellis', 'model.layers.22.self_attn.v_proj.SU', 'model.layers.22.self_attn.v_proj.SV', 'model.layers.22.self_attn.v_proj.tlut', 'model.layers.22.self_attn.v_proj.trellis', 'model.layers.23.mlp.down_proj.SU', 'model.layers.23.mlp.down_proj.SV', 'model.layers.23.mlp.down_proj.tlut', 'model.layers.23.mlp.down_proj.trellis', 'model.layers.23.mlp.gate_proj.SU', 'model.layers.23.mlp.gate_proj.SV', 'model.layers.23.mlp.gate_proj.tlut', 'model.layers.23.mlp.gate_proj.trellis', 'model.layers.23.mlp.up_proj.SU', 'model.layers.23.mlp.up_proj.SV', 'model.layers.23.mlp.up_proj.tlut', 'model.layers.23.mlp.up_proj.trellis', 'model.layers.23.self_attn.k_proj.SU', 'model.layers.23.self_attn.k_proj.SV', 'model.layers.23.self_attn.k_proj.tlut', 'model.layers.23.self_attn.k_proj.trellis', 'model.layers.23.self_attn.o_proj.SU', 'model.layers.23.self_attn.o_proj.SV', 'model.layers.23.self_attn.o_proj.tlut', 'model.layers.23.self_attn.o_proj.trellis', 'model.layers.23.self_attn.q_proj.SU', 'model.layers.23.self_attn.q_proj.SV', 'model.layers.23.self_attn.q_proj.tlut', 'model.layers.23.self_attn.q_proj.trellis', 'model.layers.23.self_attn.v_proj.SU', 'model.layers.23.self_attn.v_proj.SV', 'model.layers.23.self_attn.v_proj.tlut', 'model.layers.23.self_attn.v_proj.trellis', 'model.layers.24.mlp.down_proj.SU', 'model.layers.24.mlp.down_proj.SV', 'model.layers.24.mlp.down_proj.tlut', 'model.layers.24.mlp.down_proj.trellis', 'model.layers.24.mlp.gate_proj.SU', 'model.layers.24.mlp.gate_proj.SV', 'model.layers.24.mlp.gate_proj.tlut', 'model.layers.24.mlp.gate_proj.trellis', 'model.layers.24.mlp.up_proj.SU', 'model.layers.24.mlp.up_proj.SV', 'model.layers.24.mlp.up_proj.tlut', 'model.layers.24.mlp.up_proj.trellis', 'model.layers.24.self_attn.k_proj.SU', 'model.layers.24.self_attn.k_proj.SV', 'model.layers.24.self_attn.k_proj.tlut', 'model.layers.24.self_attn.k_proj.trellis', 'model.layers.24.self_attn.o_proj.SU', 'model.layers.24.self_attn.o_proj.SV', 'model.layers.24.self_attn.o_proj.tlut', 'model.layers.24.self_attn.o_proj.trellis', 'model.layers.24.self_attn.q_proj.SU', 'model.layers.24.self_attn.q_proj.SV', 'model.layers.24.self_attn.q_proj.tlut', 'model.layers.24.self_attn.q_proj.trellis', 'model.layers.24.self_attn.v_proj.SU', 'model.layers.24.self_attn.v_proj.SV', 'model.layers.24.self_attn.v_proj.tlut', 'model.layers.24.self_attn.v_proj.trellis', 'model.layers.25.mlp.down_proj.SU', 'model.layers.25.mlp.down_proj.SV', 'model.layers.25.mlp.down_proj.tlut', 'model.layers.25.mlp.down_proj.trellis', 'model.layers.25.mlp.gate_proj.SU', 'model.layers.25.mlp.gate_proj.SV', 'model.layers.25.mlp.gate_proj.tlut', 'model.layers.25.mlp.gate_proj.trellis', 'model.layers.25.mlp.up_proj.SU', 'model.layers.25.mlp.up_proj.SV', 'model.layers.25.mlp.up_proj.tlut', 'model.layers.25.mlp.up_proj.trellis', 'model.layers.25.self_attn.k_proj.SU', 'model.layers.25.self_attn.k_proj.SV', 'model.layers.25.self_attn.k_proj.tlut', 'model.layers.25.self_attn.k_proj.trellis', 'model.layers.25.self_attn.o_proj.SU', 'model.layers.25.self_attn.o_proj.SV', 'model.layers.25.self_attn.o_proj.tlut', 'model.layers.25.self_attn.o_proj.trellis', 'model.layers.25.self_attn.q_proj.SU', 'model.layers.25.self_attn.q_proj.SV', 'model.layers.25.self_attn.q_proj.tlut', 'model.layers.25.self_attn.q_proj.trellis', 'model.layers.25.self_attn.v_proj.SU', 'model.layers.25.self_attn.v_proj.SV', 'model.layers.25.self_attn.v_proj.tlut', 'model.layers.25.self_attn.v_proj.trellis', 'model.layers.26.mlp.down_proj.SU', 'model.layers.26.mlp.down_proj.SV', 'model.layers.26.mlp.down_proj.tlut', 'model.layers.26.mlp.down_proj.trellis', 'model.layers.26.mlp.gate_proj.SU', 'model.layers.26.mlp.gate_proj.SV', 'model.layers.26.mlp.gate_proj.tlut', 'model.layers.26.mlp.gate_proj.trellis', 'model.layers.26.mlp.up_proj.SU', 'model.layers.26.mlp.up_proj.SV', 'model.layers.26.mlp.up_proj.tlut', 'model.layers.26.mlp.up_proj.trellis', 'model.layers.26.self_attn.k_proj.SU', 'model.layers.26.self_attn.k_proj.SV', 'model.layers.26.self_attn.k_proj.tlut', 'model.layers.26.self_attn.k_proj.trellis', 'model.layers.26.self_attn.o_proj.SU', 'model.layers.26.self_attn.o_proj.SV', 'model.layers.26.self_attn.o_proj.tlut', 'model.layers.26.self_attn.o_proj.trellis', 'model.layers.26.self_attn.q_proj.SU', 'model.layers.26.self_attn.q_proj.SV', 'model.layers.26.self_attn.q_proj.tlut', 'model.layers.26.self_attn.q_proj.trellis', 'model.layers.26.self_attn.v_proj.SU', 'model.layers.26.self_attn.v_proj.SV', 'model.layers.26.self_attn.v_proj.tlut', 'model.layers.26.self_attn.v_proj.trellis', 'model.layers.27.mlp.down_proj.SU', 'model.layers.27.mlp.down_proj.SV', 'model.layers.27.mlp.down_proj.tlut', 'model.layers.27.mlp.down_proj.trellis', 'model.layers.27.mlp.gate_proj.SU', 'model.layers.27.mlp.gate_proj.SV', 'model.layers.27.mlp.gate_proj.tlut', 'model.layers.27.mlp.gate_proj.trellis', 'model.layers.27.mlp.up_proj.SU', 'model.layers.27.mlp.up_proj.SV', 'model.layers.27.mlp.up_proj.tlut', 'model.layers.27.mlp.up_proj.trellis', 'model.layers.27.self_attn.k_proj.SU', 'model.layers.27.self_attn.k_proj.SV', 'model.layers.27.self_attn.k_proj.tlut', 'model.layers.27.self_attn.k_proj.trellis', 'model.layers.27.self_attn.o_proj.SU', 'model.layers.27.self_attn.o_proj.SV', 'model.layers.27.self_attn.o_proj.tlut', 'model.layers.27.self_attn.o_proj.trellis', 'model.layers.27.self_attn.q_proj.SU', 'model.layers.27.self_attn.q_proj.SV', 'model.layers.27.self_attn.q_proj.tlut', 'model.layers.27.self_attn.q_proj.trellis', 'model.layers.27.self_attn.v_proj.SU', 'model.layers.27.self_attn.v_proj.SV', 'model.layers.27.self_attn.v_proj.tlut', 'model.layers.27.self_attn.v_proj.trellis', 'model.layers.28.mlp.down_proj.SU', 'model.layers.28.mlp.down_proj.SV', 'model.layers.28.mlp.down_proj.tlut', 'model.layers.28.mlp.down_proj.trellis', 'model.layers.28.mlp.gate_proj.SU', 'model.layers.28.mlp.gate_proj.SV', 'model.layers.28.mlp.gate_proj.tlut', 'model.layers.28.mlp.gate_proj.trellis', 'model.layers.28.mlp.up_proj.SU', 'model.layers.28.mlp.up_proj.SV', 'model.layers.28.mlp.up_proj.tlut', 'model.layers.28.mlp.up_proj.trellis', 'model.layers.28.self_attn.k_proj.SU', 'model.layers.28.self_attn.k_proj.SV', 'model.layers.28.self_attn.k_proj.tlut', 'model.layers.28.self_attn.k_proj.trellis', 'model.layers.28.self_attn.o_proj.SU', 'model.layers.28.self_attn.o_proj.SV', 'model.layers.28.self_attn.o_proj.tlut', 'model.layers.28.self_attn.o_proj.trellis', 'model.layers.28.self_attn.q_proj.SU', 'model.layers.28.self_attn.q_proj.SV', 'model.layers.28.self_attn.q_proj.tlut', 'model.layers.28.self_attn.q_proj.trellis', 'model.layers.28.self_attn.v_proj.SU', 'model.layers.28.self_attn.v_proj.SV', 'model.layers.28.self_attn.v_proj.tlut', 'model.layers.28.self_attn.v_proj.trellis', 'model.layers.29.mlp.down_proj.SU', 'model.layers.29.mlp.down_proj.SV', 'model.layers.29.mlp.down_proj.tlut', 'model.layers.29.mlp.down_proj.trellis', 'model.layers.29.mlp.gate_proj.SU', 'model.layers.29.mlp.gate_proj.SV', 'model.layers.29.mlp.gate_proj.tlut', 'model.layers.29.mlp.gate_proj.trellis', 'model.layers.29.mlp.up_proj.SU', 'model.layers.29.mlp.up_proj.SV', 'model.layers.29.mlp.up_proj.tlut', 'model.layers.29.mlp.up_proj.trellis', 'model.layers.29.self_attn.k_proj.SU', 'model.layers.29.self_attn.k_proj.SV', 'model.layers.29.self_attn.k_proj.tlut', 'model.layers.29.self_attn.k_proj.trellis', 'model.layers.29.self_attn.o_proj.SU', 'model.layers.29.self_attn.o_proj.SV', 'model.layers.29.self_attn.o_proj.tlut', 'model.layers.29.self_attn.o_proj.trellis', 'model.layers.29.self_attn.q_proj.SU', 'model.layers.29.self_attn.q_proj.SV', 'model.layers.29.self_attn.q_proj.tlut', 'model.layers.29.self_attn.q_proj.trellis', 'model.layers.29.self_attn.v_proj.SU', 'model.layers.29.self_attn.v_proj.SV', 'model.layers.29.self_attn.v_proj.tlut', 'model.layers.29.self_attn.v_proj.trellis', 'model.layers.3.mlp.down_proj.SU', 'model.layers.3.mlp.down_proj.SV', 'model.layers.3.mlp.down_proj.tlut', 'model.layers.3.mlp.down_proj.trellis', 'model.layers.3.mlp.gate_proj.SU', 'model.layers.3.mlp.gate_proj.SV', 'model.layers.3.mlp.gate_proj.tlut', 'model.layers.3.mlp.gate_proj.trellis', 'model.layers.3.mlp.up_proj.SU', 'model.layers.3.mlp.up_proj.SV', 'model.layers.3.mlp.up_proj.tlut', 'model.layers.3.mlp.up_proj.trellis', 'model.layers.3.self_attn.k_proj.SU', 'model.layers.3.self_attn.k_proj.SV', 'model.layers.3.self_attn.k_proj.tlut', 'model.layers.3.self_attn.k_proj.trellis', 'model.layers.3.self_attn.o_proj.SU', 'model.layers.3.self_attn.o_proj.SV', 'model.layers.3.self_attn.o_proj.tlut', 'model.layers.3.self_attn.o_proj.trellis', 'model.layers.3.self_attn.q_proj.SU', 'model.layers.3.self_attn.q_proj.SV', 'model.layers.3.self_attn.q_proj.tlut', 'model.layers.3.self_attn.q_proj.trellis', 'model.layers.3.self_attn.v_proj.SU', 'model.layers.3.self_attn.v_proj.SV', 'model.layers.3.self_attn.v_proj.tlut', 'model.layers.3.self_attn.v_proj.trellis', 'model.layers.30.mlp.down_proj.SU', 'model.layers.30.mlp.down_proj.SV', 'model.layers.30.mlp.down_proj.tlut', 'model.layers.30.mlp.down_proj.trellis', 'model.layers.30.mlp.gate_proj.SU', 'model.layers.30.mlp.gate_proj.SV', 'model.layers.30.mlp.gate_proj.tlut', 'model.layers.30.mlp.gate_proj.trellis', 'model.layers.30.mlp.up_proj.SU', 'model.layers.30.mlp.up_proj.SV', 'model.layers.30.mlp.up_proj.tlut', 'model.layers.30.mlp.up_proj.trellis', 'model.layers.30.self_attn.k_proj.SU', 'model.layers.30.self_attn.k_proj.SV', 'model.layers.30.self_attn.k_proj.tlut', 'model.layers.30.self_attn.k_proj.trellis', 'model.layers.30.self_attn.o_proj.SU', 'model.layers.30.self_attn.o_proj.SV', 'model.layers.30.self_attn.o_proj.tlut', 'model.layers.30.self_attn.o_proj.trellis', 'model.layers.30.self_attn.q_proj.SU', 'model.layers.30.self_attn.q_proj.SV', 'model.layers.30.self_attn.q_proj.tlut', 'model.layers.30.self_attn.q_proj.trellis', 'model.layers.30.self_attn.v_proj.SU', 'model.layers.30.self_attn.v_proj.SV', 'model.layers.30.self_attn.v_proj.tlut', 'model.layers.30.self_attn.v_proj.trellis', 'model.layers.31.mlp.down_proj.SU', 'model.layers.31.mlp.down_proj.SV', 'model.layers.31.mlp.down_proj.tlut', 'model.layers.31.mlp.down_proj.trellis', 'model.layers.31.mlp.gate_proj.SU', 'model.layers.31.mlp.gate_proj.SV', 'model.layers.31.mlp.gate_proj.tlut', 'model.layers.31.mlp.gate_proj.trellis', 'model.layers.31.mlp.up_proj.SU', 'model.layers.31.mlp.up_proj.SV', 'model.layers.31.mlp.up_proj.tlut', 'model.layers.31.mlp.up_proj.trellis', 'model.layers.31.self_attn.k_proj.SU', 'model.layers.31.self_attn.k_proj.SV', 'model.layers.31.self_attn.k_proj.tlut', 'model.layers.31.self_attn.k_proj.trellis', 'model.layers.31.self_attn.o_proj.SU', 'model.layers.31.self_attn.o_proj.SV', 'model.layers.31.self_attn.o_proj.tlut', 'model.layers.31.self_attn.o_proj.trellis', 'model.layers.31.self_attn.q_proj.SU', 'model.layers.31.self_attn.q_proj.SV', 'model.layers.31.self_attn.q_proj.tlut', 'model.layers.31.self_attn.q_proj.trellis', 'model.layers.31.self_attn.v_proj.SU', 'model.layers.31.self_attn.v_proj.SV', 'model.layers.31.self_attn.v_proj.tlut', 'model.layers.31.self_attn.v_proj.trellis', 'model.layers.4.mlp.down_proj.SU', 'model.layers.4.mlp.down_proj.SV', 'model.layers.4.mlp.down_proj.tlut', 'model.layers.4.mlp.down_proj.trellis', 'model.layers.4.mlp.gate_proj.SU', 'model.layers.4.mlp.gate_proj.SV', 'model.layers.4.mlp.gate_proj.tlut', 'model.layers.4.mlp.gate_proj.trellis', 'model.layers.4.mlp.up_proj.SU', 'model.layers.4.mlp.up_proj.SV', 'model.layers.4.mlp.up_proj.tlut', 'model.layers.4.mlp.up_proj.trellis', 'model.layers.4.self_attn.k_proj.SU', 'model.layers.4.self_attn.k_proj.SV', 'model.layers.4.self_attn.k_proj.tlut', 'model.layers.4.self_attn.k_proj.trellis', 'model.layers.4.self_attn.o_proj.SU', 'model.layers.4.self_attn.o_proj.SV', 'model.layers.4.self_attn.o_proj.tlut', 'model.layers.4.self_attn.o_proj.trellis', 'model.layers.4.self_attn.q_proj.SU', 'model.layers.4.self_attn.q_proj.SV', 'model.layers.4.self_attn.q_proj.tlut', 'model.layers.4.self_attn.q_proj.trellis', 'model.layers.4.self_attn.v_proj.SU', 'model.layers.4.self_attn.v_proj.SV', 'model.layers.4.self_attn.v_proj.tlut', 'model.layers.4.self_attn.v_proj.trellis', 'model.layers.5.mlp.down_proj.SU', 'model.layers.5.mlp.down_proj.SV', 'model.layers.5.mlp.down_proj.tlut', 'model.layers.5.mlp.down_proj.trellis', 'model.layers.5.mlp.gate_proj.SU', 'model.layers.5.mlp.gate_proj.SV', 'model.layers.5.mlp.gate_proj.tlut', 'model.layers.5.mlp.gate_proj.trellis', 'model.layers.5.mlp.up_proj.SU', 'model.layers.5.mlp.up_proj.SV', 'model.layers.5.mlp.up_proj.tlut', 'model.layers.5.mlp.up_proj.trellis', 'model.layers.5.self_attn.k_proj.SU', 'model.layers.5.self_attn.k_proj.SV', 'model.layers.5.self_attn.k_proj.tlut', 'model.layers.5.self_attn.k_proj.trellis', 'model.layers.5.self_attn.o_proj.SU', 'model.layers.5.self_attn.o_proj.SV', 'model.layers.5.self_attn.o_proj.tlut', 'model.layers.5.self_attn.o_proj.trellis', 'model.layers.5.self_attn.q_proj.SU', 'model.layers.5.self_attn.q_proj.SV', 'model.layers.5.self_attn.q_proj.tlut', 'model.layers.5.self_attn.q_proj.trellis', 'model.layers.5.self_attn.v_proj.SU', 'model.layers.5.self_attn.v_proj.SV', 'model.layers.5.self_attn.v_proj.tlut', 'model.layers.5.self_attn.v_proj.trellis', 'model.layers.6.mlp.down_proj.SU', 'model.layers.6.mlp.down_proj.SV', 'model.layers.6.mlp.down_proj.tlut', 'model.layers.6.mlp.down_proj.trellis', 'model.layers.6.mlp.gate_proj.SU', 'model.layers.6.mlp.gate_proj.SV', 'model.layers.6.mlp.gate_proj.tlut', 'model.layers.6.mlp.gate_proj.trellis', 'model.layers.6.mlp.up_proj.SU', 'model.layers.6.mlp.up_proj.SV', 'model.layers.6.mlp.up_proj.tlut', 'model.layers.6.mlp.up_proj.trellis', 'model.layers.6.self_attn.k_proj.SU', 'model.layers.6.self_attn.k_proj.SV', 'model.layers.6.self_attn.k_proj.tlut', 'model.layers.6.self_attn.k_proj.trellis', 'model.layers.6.self_attn.o_proj.SU', 'model.layers.6.self_attn.o_proj.SV', 'model.layers.6.self_attn.o_proj.tlut', 'model.layers.6.self_attn.o_proj.trellis', 'model.layers.6.self_attn.q_proj.SU', 'model.layers.6.self_attn.q_proj.SV', 'model.layers.6.self_attn.q_proj.tlut', 'model.layers.6.self_attn.q_proj.trellis', 'model.layers.6.self_attn.v_proj.SU', 'model.layers.6.self_attn.v_proj.SV', 'model.layers.6.self_attn.v_proj.tlut', 'model.layers.6.self_attn.v_proj.trellis', 'model.layers.7.mlp.down_proj.SU', 'model.layers.7.mlp.down_proj.SV', 'model.layers.7.mlp.down_proj.tlut', 'model.layers.7.mlp.down_proj.trellis', 'model.layers.7.mlp.gate_proj.SU', 'model.layers.7.mlp.gate_proj.SV', 'model.layers.7.mlp.gate_proj.tlut', 'model.layers.7.mlp.gate_proj.trellis', 'model.layers.7.mlp.up_proj.SU', 'model.layers.7.mlp.up_proj.SV', 'model.layers.7.mlp.up_proj.tlut', 'model.layers.7.mlp.up_proj.trellis', 'model.layers.7.self_attn.k_proj.SU', 'model.layers.7.self_attn.k_proj.SV', 'model.layers.7.self_attn.k_proj.tlut', 'model.layers.7.self_attn.k_proj.trellis', 'model.layers.7.self_attn.o_proj.SU', 'model.layers.7.self_attn.o_proj.SV', 'model.layers.7.self_attn.o_proj.tlut', 'model.layers.7.self_attn.o_proj.trellis', 'model.layers.7.self_attn.q_proj.SU', 'model.layers.7.self_attn.q_proj.SV', 'model.layers.7.self_attn.q_proj.tlut', 'model.layers.7.self_attn.q_proj.trellis', 'model.layers.7.self_attn.v_proj.SU', 'model.layers.7.self_attn.v_proj.SV', 'model.layers.7.self_attn.v_proj.tlut', 'model.layers.7.self_attn.v_proj.trellis', 'model.layers.8.mlp.down_proj.SU', 'model.layers.8.mlp.down_proj.SV', 'model.layers.8.mlp.down_proj.tlut', 'model.layers.8.mlp.down_proj.trellis', 'model.layers.8.mlp.gate_proj.SU', 'model.layers.8.mlp.gate_proj.SV', 'model.layers.8.mlp.gate_proj.tlut', 'model.layers.8.mlp.gate_proj.trellis', 'model.layers.8.mlp.up_proj.SU', 'model.layers.8.mlp.up_proj.SV', 'model.layers.8.mlp.up_proj.tlut', 'model.layers.8.mlp.up_proj.trellis', 'model.layers.8.self_attn.k_proj.SU', 'model.layers.8.self_attn.k_proj.SV', 'model.layers.8.self_attn.k_proj.tlut', 'model.layers.8.self_attn.k_proj.trellis', 'model.layers.8.self_attn.o_proj.SU', 'model.layers.8.self_attn.o_proj.SV', 'model.layers.8.self_attn.o_proj.tlut', 'model.layers.8.self_attn.o_proj.trellis', 'model.layers.8.self_attn.q_proj.SU', 'model.layers.8.self_attn.q_proj.SV', 'model.layers.8.self_attn.q_proj.tlut', 'model.layers.8.self_attn.q_proj.trellis', 'model.layers.8.self_attn.v_proj.SU', 'model.layers.8.self_attn.v_proj.SV', 'model.layers.8.self_attn.v_proj.tlut', 'model.layers.8.self_attn.v_proj.trellis', 'model.layers.9.mlp.down_proj.SU', 'model.layers.9.mlp.down_proj.SV', 'model.layers.9.mlp.down_proj.tlut', 'model.layers.9.mlp.down_proj.trellis', 'model.layers.9.mlp.gate_proj.SU', 'model.layers.9.mlp.gate_proj.SV', 'model.layers.9.mlp.gate_proj.tlut', 'model.layers.9.mlp.gate_proj.trellis', 'model.layers.9.mlp.up_proj.SU', 'model.layers.9.mlp.up_proj.SV', 'model.layers.9.mlp.up_proj.tlut', 'model.layers.9.mlp.up_proj.trellis', 'model.layers.9.self_attn.k_proj.SU', 'model.layers.9.self_attn.k_proj.SV', 'model.layers.9.self_attn.k_proj.tlut', 'model.layers.9.self_attn.k_proj.trellis', 'model.layers.9.self_attn.o_proj.SU', 'model.layers.9.self_attn.o_proj.SV', 'model.layers.9.self_attn.o_proj.tlut', 'model.layers.9.self_attn.o_proj.trellis', 'model.layers.9.self_attn.q_proj.SU', 'model.layers.9.self_attn.q_proj.SV', 'model.layers.9.self_attn.q_proj.tlut', 'model.layers.9.self_attn.q_proj.trellis', 'model.layers.9.self_attn.v_proj.SU', 'model.layers.9.self_attn.v_proj.SV', 'model.layers.9.self_attn.v_proj.tlut', 'model.layers.9.self_attn.v_proj.trellis']
+- This IS expected if you are initializing LlamaForCausalLM from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing LlamaForCausalLM from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of LlamaForCausalLM were not initialized from the model checkpoint at relaxml/Llama-3.1-8b-Instruct-QTIP-2Bit and are newly initialized: ['model.layers.0.mlp.down_proj.weight', 'model.layers.0.mlp.gate_proj.weight', 'model.layers.0.mlp.up_proj.weight', 'model.layers.0.self_attn.k_proj.weight', 'model.layers.0.self_attn.o_proj.weight', 'model.layers.0.self_attn.q_proj.weight', 'model.layers.0.self_attn.v_proj.weight', 'model.layers.1.mlp.down_proj.weight', 'model.layers.1.mlp.gate_proj.weight', 'model.layers.1.mlp.up_proj.weight', 'model.layers.1.self_attn.k_proj.weight', 'model.layers.1.self_attn.o_proj.weight', 'model.layers.1.self_attn.q_proj.weight', 'model.layers.1.self_attn.v_proj.weight', 'model.layers.10.mlp.down_proj.weight', 'model.layers.10.mlp.gate_proj.weight', 'model.layers.10.mlp.up_proj.weight', 'model.layers.10.self_attn.k_proj.weight', 'model.layers.10.self_attn.o_proj.weight', 'model.layers.10.self_attn.q_proj.weight', 'model.layers.10.self_attn.v_proj.weight', 'model.layers.11.mlp.down_proj.weight', 'model.layers.11.mlp.gate_proj.weight', 'model.layers.11.mlp.up_proj.weight', 'model.layers.11.self_attn.k_proj.weight', 'model.layers.11.self_attn.o_proj.weight', 'model.layers.11.self_attn.q_proj.weight', 'model.layers.11.self_attn.v_proj.weight', 'model.layers.12.mlp.down_proj.weight', 'model.layers.12.mlp.gate_proj.weight', 'model.layers.12.mlp.up_proj.weight', 'model.layers.12.self_attn.k_proj.weight', 'model.layers.12.self_attn.o_proj.weight', 'model.layers.12.self_attn.q_proj.weight', 'model.layers.12.self_attn.v_proj.weight', 'model.layers.13.mlp.down_proj.weight', 'model.layers.13.mlp.gate_proj.weight', 'model.layers.13.mlp.up_proj.weight', 'model.layers.13.self_attn.k_proj.weight', 'model.layers.13.self_attn.o_proj.weight', 'model.layers.13.self_attn.q_proj.weight', 'model.layers.13.self_attn.v_proj.weight', 'model.layers.14.mlp.down_proj.weight', 'model.layers.14.mlp.gate_proj.weight', 'model.layers.14.mlp.up_proj.weight', 'model.layers.14.self_attn.k_proj.weight', 'model.layers.14.self_attn.o_proj.weight', 'model.layers.14.self_attn.q_proj.weight', 'model.layers.14.self_attn.v_proj.weight', 'model.layers.15.mlp.down_proj.weight', 'model.layers.15.mlp.gate_proj.weight', 'model.layers.15.mlp.up_proj.weight', 'model.layers.15.self_attn.k_proj.weight', 'model.layers.15.self_attn.o_proj.weight', 'model.layers.15.self_attn.q_proj.weight', 'model.layers.15.self_attn.v_proj.weight', 'model.layers.16.mlp.down_proj.weight', 'model.layers.16.mlp.gate_proj.weight', 'model.layers.16.mlp.up_proj.weight', 'model.layers.16.self_attn.k_proj.weight', 'model.layers.16.self_attn.o_proj.weight', 'model.layers.16.self_attn.q_proj.weight', 'model.layers.16.self_attn.v_proj.weight', 'model.layers.17.mlp.down_proj.weight', 'model.layers.17.mlp.gate_proj.weight', 'model.layers.17.mlp.up_proj.weight', 'model.layers.17.self_attn.k_proj.weight', 'model.layers.17.self_attn.o_proj.weight', 'model.layers.17.self_attn.q_proj.weight', 'model.layers.17.self_attn.v_proj.weight', 'model.layers.18.mlp.down_proj.weight', 'model.layers.18.mlp.gate_proj.weight', 'model.layers.18.mlp.up_proj.weight', 'model.layers.18.self_attn.k_proj.weight', 'model.layers.18.self_attn.o_proj.weight', 'model.layers.18.self_attn.q_proj.weight', 'model.layers.18.self_attn.v_proj.weight', 'model.layers.19.mlp.down_proj.weight', 'model.layers.19.mlp.gate_proj.weight', 'model.layers.19.mlp.up_proj.weight', 'model.layers.19.self_attn.k_proj.weight', 'model.layers.19.self_attn.o_proj.weight', 'model.layers.19.self_attn.q_proj.weight', 'model.layers.19.self_attn.v_proj.weight', 'model.layers.2.mlp.down_proj.weight', 'model.layers.2.mlp.gate_proj.weight', 'model.layers.2.mlp.up_proj.weight', 'model.layers.2.self_attn.k_proj.weight', 'model.layers.2.self_attn.o_proj.weight', 'model.layers.2.self_attn.q_proj.weight', 'model.layers.2.self_attn.v_proj.weight', 'model.layers.20.mlp.down_proj.weight', 'model.layers.20.mlp.gate_proj.weight', 'model.layers.20.mlp.up_proj.weight', 'model.layers.20.self_attn.k_proj.weight', 'model.layers.20.self_attn.o_proj.weight', 'model.layers.20.self_attn.q_proj.weight', 'model.layers.20.self_attn.v_proj.weight', 'model.layers.21.mlp.down_proj.weight', 'model.layers.21.mlp.gate_proj.weight', 'model.layers.21.mlp.up_proj.weight', 'model.layers.21.self_attn.k_proj.weight', 'model.layers.21.self_attn.o_proj.weight', 'model.layers.21.self_attn.q_proj.weight', 'model.layers.21.self_attn.v_proj.weight', 'model.layers.22.mlp.down_proj.weight', 'model.layers.22.mlp.gate_proj.weight', 'model.layers.22.mlp.up_proj.weight', 'model.layers.22.self_attn.k_proj.weight', 'model.layers.22.self_attn.o_proj.weight', 'model.layers.22.self_attn.q_proj.weight', 'model.layers.22.self_attn.v_proj.weight', 'model.layers.23.mlp.down_proj.weight', 'model.layers.23.mlp.gate_proj.weight', 'model.layers.23.mlp.up_proj.weight', 'model.layers.23.self_attn.k_proj.weight', 'model.layers.23.self_attn.o_proj.weight', 'model.layers.23.self_attn.q_proj.weight', 'model.layers.23.self_attn.v_proj.weight', 'model.layers.24.mlp.down_proj.weight', 'model.layers.24.mlp.gate_proj.weight', 'model.layers.24.mlp.up_proj.weight', 'model.layers.24.self_attn.k_proj.weight', 'model.layers.24.self_attn.o_proj.weight', 'model.layers.24.self_attn.q_proj.weight', 'model.layers.24.self_attn.v_proj.weight', 'model.layers.25.mlp.down_proj.weight', 'model.layers.25.mlp.gate_proj.weight', 'model.layers.25.mlp.up_proj.weight', 'model.layers.25.self_attn.k_proj.weight', 'model.layers.25.self_attn.o_proj.weight', 'model.layers.25.self_attn.q_proj.weight', 'model.layers.25.self_attn.v_proj.weight', 'model.layers.26.mlp.down_proj.weight', 'model.layers.26.mlp.gate_proj.weight', 'model.layers.26.mlp.up_proj.weight', 'model.layers.26.self_attn.k_proj.weight', 'model.layers.26.self_attn.o_proj.weight', 'model.layers.26.self_attn.q_proj.weight', 'model.layers.26.self_attn.v_proj.weight', 'model.layers.27.mlp.down_proj.weight', 'model.layers.27.mlp.gate_proj.weight', 'model.layers.27.mlp.up_proj.weight', 'model.layers.27.self_attn.k_proj.weight', 'model.layers.27.self_attn.o_proj.weight', 'model.layers.27.self_attn.q_proj.weight', 'model.layers.27.self_attn.v_proj.weight', 'model.layers.28.mlp.down_proj.weight', 'model.layers.28.mlp.gate_proj.weight', 'model.layers.28.mlp.up_proj.weight', 'model.layers.28.self_attn.k_proj.weight', 'model.layers.28.self_attn.o_proj.weight', 'model.layers.28.self_attn.q_proj.weight', 'model.layers.28.self_attn.v_proj.weight', 'model.layers.29.mlp.down_proj.weight', 'model.layers.29.mlp.gate_proj.weight', 'model.layers.29.mlp.up_proj.weight', 'model.layers.29.self_attn.k_proj.weight', 'model.layers.29.self_attn.o_proj.weight', 'model.layers.29.self_attn.q_proj.weight', 'model.layers.29.self_attn.v_proj.weight', 'model.layers.3.mlp.down_proj.weight', 'model.layers.3.mlp.gate_proj.weight', 'model.layers.3.mlp.up_proj.weight', 'model.layers.3.self_attn.k_proj.weight', 'model.layers.3.self_attn.o_proj.weight', 'model.layers.3.self_attn.q_proj.weight', 'model.layers.3.self_attn.v_proj.weight', 'model.layers.30.mlp.down_proj.weight', 'model.layers.30.mlp.gate_proj.weight', 'model.layers.30.mlp.up_proj.weight', 'model.layers.30.self_attn.k_proj.weight', 'model.layers.30.self_attn.o_proj.weight', 'model.layers.30.self_attn.q_proj.weight', 'model.layers.30.self_attn.v_proj.weight', 'model.layers.31.mlp.down_proj.weight', 'model.layers.31.mlp.gate_proj.weight', 'model.layers.31.mlp.up_proj.weight', 'model.layers.31.self_attn.k_proj.weight', 'model.layers.31.self_attn.o_proj.weight', 'model.layers.31.self_attn.q_proj.weight', 'model.layers.31.self_attn.v_proj.weight', 'model.layers.4.mlp.down_proj.weight', 'model.layers.4.mlp.gate_proj.weight', 'model.layers.4.mlp.up_proj.weight', 'model.layers.4.self_attn.k_proj.weight', 'model.layers.4.self_attn.o_proj.weight', 'model.layers.4.self_attn.q_proj.weight', 'model.layers.4.self_attn.v_proj.weight', 'model.layers.5.mlp.down_proj.weight', 'model.layers.5.mlp.gate_proj.weight', 'model.layers.5.mlp.up_proj.weight', 'model.layers.5.self_attn.k_proj.weight', 'model.layers.5.self_attn.o_proj.weight', 'model.layers.5.self_attn.q_proj.weight', 'model.layers.5.self_attn.v_proj.weight', 'model.layers.6.mlp.down_proj.weight', 'model.layers.6.mlp.gate_proj.weight', 'model.layers.6.mlp.up_proj.weight', 'model.layers.6.self_attn.k_proj.weight', 'model.layers.6.self_attn.o_proj.weight', 'model.layers.6.self_attn.q_proj.weight', 'model.layers.6.self_attn.v_proj.weight', 'model.layers.7.mlp.down_proj.weight', 'model.layers.7.mlp.gate_proj.weight', 'model.layers.7.mlp.up_proj.weight', 'model.layers.7.self_attn.k_proj.weight', 'model.layers.7.self_attn.o_proj.weight', 'model.layers.7.self_attn.q_proj.weight', 'model.layers.7.self_attn.v_proj.weight', 'model.layers.8.mlp.down_proj.weight', 'model.layers.8.mlp.gate_proj.weight', 'model.layers.8.mlp.up_proj.weight', 'model.layers.8.self_attn.k_proj.weight', 'model.layers.8.self_attn.o_proj.weight', 'model.layers.8.self_attn.q_proj.weight', 'model.layers.8.self_attn.v_proj.weight', 'model.layers.9.mlp.down_proj.weight', 'model.layers.9.mlp.gate_proj.weight', 'model.layers.9.mlp.up_proj.weight', 'model.layers.9.self_attn.k_proj.weight', 'model.layers.9.self_attn.o_proj.weight', 'model.layers.9.self_attn.q_proj.weight', 'model.layers.9.self_attn.v_proj.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> def generate_text(prompt):
+...     # ترميز الإدخال ونقله إلى الجهاز
+...     inputs = tokenizer(prompt, return_tensors="pt", padding=True, truncation=True)
+...     inputs = {key: value.to(device) for key, value in inputs.items()}  # نقل البيانات إلى الجهاز
+...
+>>>     # توليد النص باستخدام النموذج
+>>>     with torch.no_grad():
+  File "<stdin>", line 1
+    with torch.no_grad():
+IndentationError: unexpected indent
+>>>         output_ids = model.generate(
+  File "<stdin>", line 1
+    output_ids = model.generate(
+IndentationError: unexpected indent
+>>>             **inputs,
+  File "<stdin>", line 1
+    **inputs,
+IndentationError: unexpected indent
+>>>             max_length=200,  # ضبط طول الإخراج
+  File "<stdin>", line 1
+    max_length=200,  # ضبط طول الإخراج
+IndentationError: unexpected indent
+>>>             temperature=0.7,  # تعديل العشوائية في النص
+  File "<stdin>", line 1
+    temperature=0.7,  # تعديل العشوائية في النص
+IndentationError: unexpected indent
+>>>             top_k=50,  # تصفية المخرجات بناءً على أفضل 50 خيارًا
+  File "<stdin>", line 1
+    top_k=50,  # تصفية المخرجات بناءً على أفضل 50 خيارًا
+IndentationError: unexpected indent
+>>>             top_p=0.9,  # منع النتائج منخفضة الاحتمال
+  File "<stdin>", line 1
+    top_p=0.9,  # منع النتائج منخفضة الاحتمال
+IndentationError: unexpected indent
+>>>             pad_token_id=tokenizer.pad_token_id  # تجنب أخطاء التعبئة
+  File "<stdin>", line 1
+    pad_token_id=tokenizer.pad_token_id  # تجنب أخطاء التعبئة
+IndentationError: unexpected indent
+>>>         )
+  File "<stdin>", line 1
+    )
+IndentationError: unexpected indent
+>>>
+>>>     # فك ترميز الإخراج
+>>>     output_text = tokenizer.decode(output_ids[0], skip_special_tokens=True, return_full_text=False)
+  File "<stdin>", line 1
+    output_text = tokenizer.decode(output_ids[0], skip_special_tokens=True, return_full_text=False)
+IndentationError: unexpected indent
+>>>     return output_text.strip()
+  File "<stdin>", line 1
+    return output_text.strip()
+IndentationError: unexpected indent
+>>>
+>>> # تشغيل النموذج
+>>> while True:
+...     user_input = input("أدخل نصاً للنموذج ('خروج' لإنهاء البرنامج): ")
+...     if user_input.lower() == "خروج":
+...         break
+...
+...     try:
+...         response = generate_text(user_input)
+...         print(f"المخرجات:\n{response}\n")
+...     except Exception as e:
+...         print(f"حدث خطأ أثناء التوليد: {e}")
+...
+أدخل نصاً للنموذج ('خروج' لإنهاء البرنامج): hi
+المخرجات:
+None
+
+أدخل نصاً للنموذج ('خروج' لإنهاء البرنامج): Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+KeyboardInterrupt
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> def generate_text(prompt):
+...     # ترميز الإدخال ونقله إلى الجهاز
+...     inputs = tokenizer(prompt, return_tensors="pt", padding=True, truncation=True)
+...     inputs = {key: value.to(device) for key, value in inputs.items()}  # نقل البيانات إلى الجهاز
+...
+>>>     # توليد النص باستخدام النموذج
+>>>     with torch.no_grad():
+  File "<stdin>", line 1
+    with torch.no_grad():
+IndentationError: unexpected indent
+>>>         output_ids = model.generate(
+  File "<stdin>", line 1
+    output_ids = model.generate(
+IndentationError: unexpected indent
+>>>             **inputs,
+  File "<stdin>", line 1
+    **inputs,
+IndentationError: unexpected indent
+>>>             max_length=200,  # ضبط طول الإخراج
+  File "<stdin>", line 1
+    max_length=200,  # ضبط طول الإخراج
+IndentationError: unexpected indent
+>>>             temperature=0.7,  # تعديل العشوائية في النص
+  File "<stdin>", line 1
+    temperature=0.7,  # تعديل العشوائية في النص
+IndentationError: unexpected indent
+>>>             top_k=50,  # تصفية المخرجات بناءً على أفضل 50 خيارًا
+  File "<stdin>", line 1
+    top_k=50,  # تصفية المخرجات بناءً على أفضل 50 خيارًا
+IndentationError: unexpected indent
+>>>             top_p=0.9,  # منع النتائج منخفضة الاحتمال
+  File "<stdin>", line 1
+    top_p=0.9,  # منع النتائج منخفضة الاحتمال
+IndentationError: unexpected indent
+>>>             pad_token_id=tokenizer.pad_token_id  # تجنب أخطاء التعبئة
+  File "<stdin>", line 1
+    pad_token_id=tokenizer.pad_token_id  # تجنب أخطاء التعبئة
+IndentationError: unexpected indent
+>>>         )
+  File "<stdin>", line 1
+    )
+IndentationError: unexpected indent
+>>>
+>>>     # فك ترميز الإخراج
+>>>     output_text = tokenizer.decode(output_ids[0], skip_special_tokens=True, return_full_text=False)
+  File "<stdin>", line 1
+    output_text = tokenizer.decode(output_ids[0], skip_special_tokens=True, return_full_text=False)
+IndentationError: unexpected indent
+>>>     return output_text.strip()
+  File "<stdin>", line 1
+    return output_text.strip()
+IndentationError: unexpected indent
+>>>
+>>> # اختبار النموذج على نص ثابت
+>>> prompt_text = "Hello, how are you?"
+>>> output = generate_text(prompt_text)
+>>> print(f"المخرجات:\n{output}\n")
+المخرجات:
+None
+
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> def generate_text(prompt):
+...     # ترميز الإدخال
+...     inputs = tokenizer(prompt, return_tensors="pt", padding=True, truncation=True)
+...     print(f"[DEBUG] Encoded Inputs: {inputs}")  # طباعة الإدخال المرمّز
+...
+...     # نقل التوكنات إلى الجهاز
+...     inputs = {key: value.to(device) for key, value in inputs.items()}
+...
+...     # توليد النص باستخدام النموذج
+...     with torch.no_grad():
+...         output_ids = model.generate(
+...             **inputs,
+...             max_length=200,  # ضبط طول الإخراج
+...             temperature=0.7,
+...             top_k=50,
+...             top_p=0.9,
+...             pad_token_id=tokenizer.pad_token_id
+...         )
+...
+...     print(f"[DEBUG] Output Token IDs: {output_ids}")  # طباعة التوكنات المولدة
+...
+...     # فك ترميز الإخراج
+...     output_text = tokenizer.decode(output_ids[0], skip_special_tokens=True, return_full_text=False)
+...     print(f"[DEBUG] Decoded Output: {output_text}")  # طباعة النص المفكوك ترميزه
+...
+...     return output_text.strip()
+...
+>>> # اختبار النموذج على نص ثابت
+>>> prompt_text = "Hello, how are you?"
+>>> output = generate_text(prompt_text)
+[DEBUG] Encoded Inputs: {'input_ids': tensor([[128000,   9906,     11,   1268,    527,    499,     30]]), 'attention_mask': tensor([[1, 1, 1, 1, 1, 1, 1]])}
+C:\Users\TARGET STORE\AppData\Roaming\Python\Python311\site-packages\transformers\models\llama\modeling_llama.py:655: UserWarning: 1Torch was not compiled with flash attention. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\aten\src\ATen\native\transformers\cuda\sdp_utils.cpp:555.)
+  attn_output = torch.nn.functional.scaled_dot_product_attention(
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+[DEBUG] Output Token IDs: tensor([[128000,   9906,     11,   1268,    527,    499,     30,  36544,  36544,
+          43543,  36544,  53431,  38356,  36544,  27771,  36544,  27771,  36544,
+          36544,  36544,  44191,  36544,  36544,  89924,  36544,  36544,  76808,
+         111995,  36544,  57640,  27771,  36544,  36544,  36544,  36544,  36544,
+          87566,  36544,  36544,  38222,  87566, 111520,  36544, 101035, 102431,
+          36544,  36544,  39865,  78186, 111520,  38222,  36544,  36544,  36544,
+          36544,  36544,  27771,  38222,  78186,  23802,  36544,  89924, 105748,
+          36544,  21920, 111520,  21920,  36544,  27771,  23802,  36544,  21920,
+         111520,  36544,  23802,  91150,  27771,  36544,  21920,  21920,  13145,
+          36544,  91150,  36544,  21920,  21920,  21920, 102431, 111520,  21920,
+         101035, 111520,  36544,  78186, 116187, 102431,  74263,  21920,  36544,
+         101035,  49990, 111520,  21920,  78186,  23802,  23802, 111520,  38222,
+         111520,  19027,  36544,  21920,  91150,  23802,  88512,  38222, 111520,
+          21920, 111520, 116187,  88512,  21920,  21920,  13145,  23802,  91150,
+          89136,  21920,  23802,  23802,  21920,  91150,  21920,  23802, 116187,
+          21920,  89924,  89924,  36544,  78186,  27771,  21920,  21920,  21920,
+          36544,  39865,  68495,  36544, 111520,  21920,  27771,  21920,  89924,
+          89136, 111520,  13145,  23802,  21920, 116187,  21920, 101035, 111520,
+          88512,  23802,  25416,  23802,  54756, 116187,  27771,  21920,  89136,
+          13145, 111520,  21920,  78186,  38222,  23802,  21920,  45457,  21920,
+          49990,  78186,  25873,  91150,  23802,  21920,  38222,  89924,  18246,
+          21920,  78186,  88512,  23802,  21920,  21920,  45457,  78186,  21920,
+          21920,  39865]], device='cuda:0')
+[DEBUG] Decoded Output: Hello, how are you?aidaaidaääaidaowitz Philosophaidaistasaidaistasaidaaidaaidaievaidaaida Zotaidaaida portfolios tôaidaodkaistasaidaaidaaidaaidaaidarelandaidaaidaistenrelandubataidasobгуaidaaidaло Liesubatistenaidaaidaaidaaidaaidaistasisten Lies648aida Zot tohaidaitasubatitasaidaistas648aidaitasubataida648 Consultantsistasaidaitasitasitanaida Consultantsaidaitasitasitasгуubatitassobubataida Lies坦гу/frontenditasaidasobxfaubatitas Lies648648ubatistenubat710aidaitas Consultants648ackersistenubatitasubat坦ackersitasitasitan648 Consultants_CRITICALitas648648itas Consultantsitas648坦itas Zot Zotaida Liesistasitasitasitasaidaлоerneaidaubatitasistasitas Zot_CRITICALubatitan648itas坦itassobubatackers648Translation648wyn坦istasitas_CRITICALitanubatitas Liesisten648itastranslatoritasxfa Lies982 Consultants648itasisten Zotechaitas Liesackers648itasitastranslator Liesitasitasло
+>>>
+>>> # طباعة النتيجة النهائية
+>>> if output:
+...     print(f"المخرجات:\n{output}\n")
+... else:
+...     print("⚠️ حدث خطأ: لم يتم توليد أي مخرجات!")
+...
+المخرجات:
+Hello, how are you?aidaaidaääaidaowitz Philosophaidaistasaidaistasaidaaidaaidaievaidaaida Zotaidaaida portfolios tôaidaodkaistasaidaaidaaidaaidaaidarelandaidaaidaistenrelandubataidasobгуaidaaidaло Liesubatistenaidaaidaaidaaidaaidaistasisten Lies648aida Zot tohaidaitasubatitasaidaistas648aidaitasubataida648 Consultantsistasaidaitasitasitanaida Consultantsaidaitasitasitasгуubatitassobubataida Lies坦гу/frontenditasaidasobxfaubatitas Lies648648ubatistenubat710aidaitas Consultants648ackersistenubatitasubat坦ackersitasitasitan648 Consultants_CRITICALitas648648itas Consultantsitas648坦itas Zot Zotaida Liesistasitasitasitasaidaлоerneaidaubatitasistasitas Zot_CRITICALubatitan648itas坦itassobubatackers648Translation648wyn坦istasitas_CRITICALitanubatitas Liesisten648itastranslatoritasxfa Lies982 Consultants648itasisten Zotechaitas Liesackers648itasitastranslator Liesitasitasло
+
+>>>
